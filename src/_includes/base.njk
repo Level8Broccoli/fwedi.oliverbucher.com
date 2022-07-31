@@ -203,6 +203,11 @@
             color: white;
         }
 
+        .fw-columns.fw-red {
+            background-color: var(--clr-red-dark);
+            color: white;
+        }
+
         .fw-maps iframe {
             width: 100%;
         }
@@ -352,7 +357,28 @@
 
             modalDismissButton.addEventListener("click", dismiss);
             modalDismissClose.addEventListener("click", dismiss);
-        })()
+        })();
+
+        (function upCount() {
+            const observer = new IntersectionObserver(() => {
+                console.log("check");
+                const counter = document.querySelectorAll("[data-up-count]");
+                counter.forEach(c => {
+                    const attrVal = c.getAttribute("data-up-count");
+                    const hasK = attrVal.includes("K");
+                    const goal = hasK ? Number(attrVal.substring(0, attrVal.length - 1)) : Number(attrVal);
+                    c.innerHTML = 0;
+                    const numOfValues = 25;
+                    for (let i = 0; i < numOfValues; i++) {
+                        const newValue = Math.floor(goal / (numOfValues - i));
+                        setTimeout(() => {
+                            c.innerHTML = hasK ? newValue + "K" : newValue;
+                        }, (i * 100));
+                    }
+                });
+            });
+            observer.observe(document.getElementById("fw-observer"));
+        })();
     </script>
 </body>
 
