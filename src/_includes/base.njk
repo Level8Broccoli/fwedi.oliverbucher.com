@@ -135,6 +135,19 @@
             transform: rotate(90deg);
         }
 
+        .fw-footer {
+            background-color: black;
+            color: white;
+            padding-block: 1.25rem;
+        }
+
+        .fw-footer>* {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
     </style>
 </head>
 
@@ -247,8 +260,34 @@
             pariatur quos omnis alias dolor, voluptatum sint placeat totam maiores, voluptatem animi velit cumque
             dignissimos consectetur aliquid!</p>
     </main>
-    <footer class="container">
-        This is the footer
+    <footer class="fw-footer">
+        <div class="container">
+            <div>
+                <address style="font-style:normal;">
+                    <strong style="color: white;">Feuerwehr Ebikon-Dierikon</strong><br>
+                    Dorfstrasse 15a<br>
+                    6030 Ebikon
+                </address>
+            </div>
+            <div>
+                <p>Notruf : 118</p>
+                <p>Magazin Ebikon: 041 442 18 00</p>
+                <p>(Nur im Ereignisfall bedient)</p>
+            </div>
+            <div>
+                <p><strong style="color: white;">Wichtige Nummern</strong></p>
+                <p style="display: flex; justify-content: space-between; gap: 1rem;"><span>Toxicologie</span> <span>Tel.
+                        145</span></p>
+                <p style="display: flex; justify-content: space-between; gap: 1rem;"><span>Feuerwehr</span> <span>Tel.
+                        118</span></p>
+                <p style="display: flex; justify-content: space-between; gap: 1rem;"><span>Ambulanz</span> <span>Tel.
+                        144</span></p>
+                <p style="display: flex; justify-content: space-between; gap: 1rem;"><span>Polizei</span> <span>Tel.
+                        117</span></p>
+                <p style="display: flex; justify-content: space-between; gap: 1rem;"><span>Rega</span> <span>Tel.
+                        1414</span></p>
+            </div>
+        </div>
     </footer>
 </body>
 
