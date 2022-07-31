@@ -10,10 +10,19 @@
     <style>
         :root {
             --clr-red: hsl(0, 62%, 46%);
+            --clr-red-dark: hsl(0, 63%, 38%);
             --clr-bg: hsl(0, 0%, 90%);
         }
         body {
             background-color: var(--clr-bg);
+            color: black;
+            display: grid;
+            grid-template-rows: max-content max-content 1fr max-content;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
         }
         .fw-header {
             padding-block: 2rem;
@@ -26,6 +35,51 @@
             color: var(--clr-red);
         }
 
+        .fw-nav {
+            --border-bottom-size: 5px;
+            background-color: var(--clr-red);
+            color: white;
+            position: relative;
+            z-index: 0;
+        }
+
+        .fw-nav ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .fw-nav::before {
+            content: "";
+            display: block;
+            height: var(--border-bottom-size);
+            background-color: black;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .fw-nav a {
+            color: inherit;
+            background-color: inherit;
+            display: block;
+            padding: 1rem 1.25rem;
+            font-weight: 600;
+            font-size: 1.3em;
+            border-bottom: var(--border-bottom-size) solid black;
+            border-right: .125rem solid var(--clr-red-dark);
+            transition: all .25s;
+            position: relative;
+            z-index: 2;
+        }
+        .fw-nav a:hover,.fw-nav a:focus {
+            background-color: white;
+            color: black;
+        }
+        .fw-nav .active a {
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
 
@@ -35,9 +89,21 @@
         <h1 class="is-size-3 has-text-weight-bold">Feuerwehr Ebikon-Dierikon </h1>
         <h2 class="has-text-weight-bold is-size-4">Notruf <span class="is-size-2">118</span></h2>
     </header>
-    <div class="container">
+    <nav class="container fw-nav">
+        <ul>
+            <li class="active"><a>Home</a></li>
+            <li><a>Über uns</a></li>
+            <li><a>Entstehung</a></li>
+            <li><a>Infos und News</a></li>
+            <li><a>Downloads</a></li>
+        </ul>
+    </nav>
+    <main class="container fw-main">
         {{ content | safe }}
-    </div>
+    </main>
+    <footer class="container">
+        This is the footer
+    </footer>
 </body>
 
 </html>
