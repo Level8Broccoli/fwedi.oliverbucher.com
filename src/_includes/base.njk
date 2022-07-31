@@ -230,6 +230,52 @@
             background-color: var(--clr-red);
         }
 
+        a.navbar-burger,
+        .fw-mobile-nav {
+            display: none;
+        }
+
+        @media screen and (max-width: 900px) {
+            .fw-nav ul li:not(.active):not(.fw-nav-toggler) {
+                display: none;
+            }
+
+            .fw-nav ul {
+                justify-content: space-between;
+            }
+
+            a.navbar-burger {
+                display: block;
+                height: 100%;
+                padding-inline: 2rem;
+            }
+
+            .fw-mobile-nav.show {
+                display: grid;
+            }
+
+            .fw-mobile-nav {
+                box-shadow: 0 .5em 1em -.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
+                background-color: white;
+            }
+
+            .fw-mobile-nav a {
+                display: block;
+                padding: 0.5rem 1rem;
+                color: black;
+                transition: all .25s;
+            }
+
+            .fw-mobile-nav a:hover {
+                background-color: var(--clr-red);
+                color: white;
+            }
+
+            .fw-mobile-nav li li {
+                margin-left: 2rem;
+            }
+        }
+
     </style>
 </head>
 
@@ -265,8 +311,8 @@
     </div>
     <header class="container fw-header">
         <img src="/images/FWEDI_Logo.png" alt="" width="75" height="75">
-        <h1 class="is-size-3 has-text-weight-bold">Feuerwehr Ebikon-Dierikon </h1>
-        <h2>
+        <h1 class="is-size-3 has-text-weight-bold is-size-4-mobile">Feuerwehr Ebikon-Dierikon </h1>
+        <h2 class="is-hidden-mobile">
             <span class="has-text-weight-bold is-size-4 is-uppercase">Notruf </span>
             <span class="has-text-weight-bold is-size-2">118 </span>
         </h2>
@@ -279,6 +325,29 @@
                 <li><a>Entstehung</a></li>
                 <li class="fw-with-subnav"><a>Infos und News</a>
                     <ul class="fw-subnav">
+                        <li><a href="">Einsätze</a></li>
+                        <li><a href="">Übungsberichte</a></li>
+                        <li><a href="">Events</a></li>
+                        <li><a href="">Anlässe</a></li>
+                    </ul>
+                </li>
+                <li><a>Downloads</a></li>
+                <li class="fw-nav-toggler">
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-nav-toggler>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="container fw-mobile-nav" data-mobile-nav>
+            <ul>
+                <li class="active"><a>Home</a></li>
+                <li><a>Über uns</a></li>
+                <li><a>Entstehung</a></li>
+                <li><a>Infos und News</a>
+                    <ul class="fw-mobile-subnav">
                         <li><a href="">Einsätze</a></li>
                         <li><a href="">Übungsberichte</a></li>
                         <li><a href="">Events</a></li>
@@ -378,6 +447,19 @@
                 });
             });
             observer.observe(document.getElementById("fw-observer"));
+        })();
+
+        (function navToggler() {
+            const toggler = document.querySelector("[data-nav-toggler]");
+            const nav = document.querySelector("[data-mobile-nav]");
+            toggler.addEventListener("click", () => {
+                if (nav.classList.contains("show")) {
+                    nav.classList.remove("show");
+                } else {
+                    nav.classList.add("show");
+                }
+            })
+
         })();
     </script>
 </body>
