@@ -50,7 +50,7 @@
 
         .fw-nav {
             --border-bottom-size: 5px;
-            --z-index-nav: 1000;
+            --z-index-nav: 30;
             background-color: var(--clr-red);
             color: white;
             position: sticky;
@@ -161,6 +161,32 @@
 </head>
 
 <body>
+    <div class="modal" data-modal>
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <article class="media">
+                    <div class="media-left">
+                        <div class="fw-emoji" style="font-size: 3em;"> 🔥</div>
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong>Trockenheit</strong>
+                                <br>
+                                Bedingtes Feuerverbot im Wald und in Waldesnähe/im Freien: Feuer nur auf
+                                festeingerichteten Feuerstellen toleriert, jeweils mit der angebrachten Vorsicht.
+                            </p>
+                            <button class="button is-info" data-dismiss-modal-button>Habe ich gelesen</button>
+                            <br><br>
+                            <p><small><em>Notiz: Dieses Fenster erscheint alle 10 Minuten.</em></small></p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close" data-dismiss-modal-close></button>
+    </div>
     <header class="container fw-header">
         <img src="/images/FWEDI_Logo.png" alt="" width="75" height="75">
         <h1 class="is-size-3 has-text-weight-bold">Feuerwehr Ebikon-Dierikon </h1>
@@ -216,6 +242,42 @@
             </div>
         </div>
     </footer>
+    <script>
+        (function modal() {
+            const MODAL_STORAGE_KEY = "modal-dismiss-until";
+            const DIMISS_FOR_MS = 10 * 60 * 1000;
+            const modal = document.querySelector("[data-modal]");
+            const modalDismissButton = document.querySelector("[data-dismiss-modal-button]");
+            const modalDismissClose = document.querySelector("[data-dismiss-modal-close]");
+
+            const lastTimeDismissed = localStorage.getItem(MODAL_STORAGE_KEY);
+
+            try {
+                if (lastTimeDismissed) {
+                    const dateParsed = new Date(JSON.parse(lastTimeDismissed).lastTimeDismissed);
+                    const now = new Date();
+                    if (now - dateParsed > DIMISS_FOR_MS) {
+                        showModal();
+                    }
+                }
+            } catch (error) {
+                showModal();
+            }
+
+            function showModal() {
+                modal.classList.add("is-active");
+            }
+
+            function dismiss() {
+                const now = new Date();
+                modal.classList.remove("is-active");
+                localStorage.setItem(MODAL_STORAGE_KEY, JSON.stringify({ lastTimeDismissed: now }))
+            }
+
+            modalDismissButton.addEventListener("click", dismiss);
+            modalDismissClose.addEventListener("click", dismiss);
+        })()
+    </script>
 </body>
 
 </html>
