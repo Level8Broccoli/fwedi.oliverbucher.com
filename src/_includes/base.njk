@@ -15,6 +15,10 @@
             --clr-dark: hsl(0, 0%, 12%);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--clr-bg);
             color: black;
@@ -203,6 +207,24 @@
             width: 100%;
         }
 
+        .back-to-top a::before {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            height: 2.5rem;
+            width: 2.5rem;
+            content: "\2771";
+            background-color: white;
+            transform: rotate(-90deg);
+            box-shadow: 0 .5em 1em -.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
+            display: grid;
+            place-items: center;
+        }
+
+        .back-to-top a:hover::before {
+            background-color: var(--clr-red);
+        }
+
     </style>
 </head>
 
@@ -232,6 +254,9 @@
             </div>
         </div>
         <button class="modal-close is-large" aria-label="close" data-dismiss-modal-close></button>
+    </div>
+    <div class="back-to-top">
+        <a href="#top"></a>
     </div>
     <header class="container fw-header">
         <img src="/images/FWEDI_Logo.png" alt="" width="75" height="75">
