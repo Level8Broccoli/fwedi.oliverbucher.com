@@ -28,10 +28,6 @@
             min-height: 100vh;
         }
 
-        .container {
-            width: 100%;
-        }
-
         @media screen and (max-width: 1023px) {
 
             .fw-header,
@@ -236,7 +232,7 @@
             display: none;
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 768px) {
             .fw-nav ul li:not(.active):not(.fw-nav-toggler) {
                 display: none;
             }
@@ -276,7 +272,6 @@
                 margin-left: 2rem;
             }
         }
-
     </style>
 </head>
 
@@ -310,14 +305,16 @@
     <div class="back-to-top">
         <a href="#top"></a>
     </div>
-    <header class="container fw-header">
-        <img src="/images/FWEDI_Logo.png" alt="" width="75" height="75">
-        <h1 class="is-size-3 has-text-weight-bold is-size-4-mobile">Feuerwehr Ebikon-Dierikon </h1>
-        <h2 class="is-hidden-mobile">
-            <span class="has-text-weight-bold is-size-4 is-uppercase">Notruf </span>
-            <span class="has-text-weight-bold is-size-2">118 </span>
-        </h2>
-    </header>
+    <div class="wrapper">
+        <header class="container fw-header">
+            <img src="/images/FWEDI_Logo.png" alt="" width="75" height="75">
+            <h1 class="is-size-3 has-text-weight-bold is-size-4-mobile">Feuerwehr Ebikon-Dierikon </h1>
+            <h2 class="is-hidden-mobile">
+                <span class="has-text-weight-bold is-size-4 is-uppercase">Notruf </span>
+                <span class="has-text-weight-bold is-size-2">118 </span>
+            </h2>
+        </header>
+    </div>
     <div class="fw-nav-wrapper">
         <nav class="container fw-nav">
             <ul>
@@ -431,7 +428,6 @@
 
         (function upCount() {
             const observer = new IntersectionObserver(() => {
-                console.log("check");
                 const counter = document.querySelectorAll("[data-up-count]");
                 counter.forEach(c => {
                     const attrVal = c.getAttribute("data-up-count");
