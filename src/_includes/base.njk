@@ -15,6 +15,9 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css">
+
     <title>Feuerwehr Ebikon-Dierikon | {{ title }}</title>
     <style>
         :root {
@@ -188,14 +191,10 @@
             justify-content: space-between;
         }
 
-        .fw-image-with-text {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .fw-image-with-text .container {
-            padding-block: 18rem 5rem;
+        .splide__slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .fw-columns,
@@ -280,6 +279,12 @@
             .fw-mobile-nav li li {
                 margin-left: 2rem;
             }
+
+        }
+
+        .swiper {
+            height: 300px;
+            width: 100%;
         }
     </style>
 </head>
@@ -368,6 +373,22 @@
         </nav>
     </div>
     <main class="fw-main">
+        <section class="splide" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img src="/images/Pikettfahrzeug-FWEDI.jpg" alt="">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="/images/_DSC9527.JPG" alt="">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="/images/_DSC9662.JPG" alt="">
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         {{ content | safe }}
     </main>
     <footer class="fw-footer">
@@ -478,7 +499,14 @@
             });
 
         })();
+        new Splide('.splide', {
+            heightRatio: 0.35,
+            type: 'loop',
+            autoplay: true,
+            // interval: 1000
+        }).mount();
     </script>
+
 </body>
 
 </html>
