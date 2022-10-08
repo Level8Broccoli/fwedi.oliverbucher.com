@@ -430,6 +430,12 @@
         </div>
     </footer>
     <script>
+        new Splide('.splide', {
+            heightRatio: 0.35,
+            type: 'loop',
+            autoplay: true,
+            // interval: 1000
+        }).mount();
         (function modal() {
             const MODAL_STORAGE_KEY = "modal-dismiss-until";
             const DIMISS_FOR_MS = 10 * 60 * 1000;
@@ -499,12 +505,6 @@
             });
 
         })();
-        new Splide('.splide', {
-            heightRatio: 0.35,
-            type: 'loop',
-            autoplay: true,
-            // interval: 1000
-        }).mount();
     </script>
 
 </body>
